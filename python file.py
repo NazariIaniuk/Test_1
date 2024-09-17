@@ -1,9 +1,0 @@
-#variable
-uphill_distance=13 
-downhill_distance=20
-uphill_time=14 
-downhill_time=16.3
-uphill_speed=uphill_distance/uphill_time
-downhill_speed=downhill_distance/downhill_time
-average_speed=(downhill_speed+uphill_speed)/2
-print(average_speed)
