@@ -1,6 +1,6 @@
-ask=int(input('enter a  number'))
-ask2=input('type y if you want to double the number')
-ask*=2
-while ask2=='y':
+ask3=int(input('enter a  number'))
+ask4=input('type y if you want to double the number')
+ask3*=2
+while ask4=='y':
  ask2=input('type y if you want to double the number')
- ask*=2
+ ask3*=2
