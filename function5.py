@@ -1,6 +1,6 @@
 def f(x):
  try:
-     (x)=float
+     x=float(x)
  except ZeroDivisionError:
         x="no"
  return x
