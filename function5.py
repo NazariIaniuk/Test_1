@@ -1,7 +1,7 @@
 def f(x):
  try:
      x=float(x)
- except ZeroDivisionError:
+ except ValueError:
         x="no"
  return x
 print(f(input('enter a number')))
