@@ -4,4 +4,3 @@ def f(x):
  except ValueError:
         x="no"
  return x
-l
