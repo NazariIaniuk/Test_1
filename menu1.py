@@ -5,11 +5,15 @@ def f2(x,y):
    c=x-y
    return c
 def ex(a=0):
-   a=0
+   a=True
    return a
-a=1
-while a==1:
-    ask=int(input('type 1 to add 2 number type 2 to subtract 2 numbers type 3 to exit'))
+a=True
+while a==True:
+    print ('''menu
+           1) add rwo number
+           2) subtract two number
+           3) exit''')
+    ask=int(input('select option'))
     if ask==1:
      x=int(input('enter a number you will add to '))
      y=int(input('enter a number you will add with'))
