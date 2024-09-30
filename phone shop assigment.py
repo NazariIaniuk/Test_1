@@ -79,6 +79,7 @@ def choice_supressor(x=0):
   x+=protchoice()
   x+=charg()
   return x
+#the program
 esc=0
 try:
  while esc==0:
