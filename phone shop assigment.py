@@ -41,11 +41,11 @@ def yearchoice(x=0):
     return x
 def year1(x=0):
    x+=20
-   input('please enter your email.')
+   input('please enter your email:')
    return x
 def year2(x=0):
    x+=35
-   input('please enter your email')
+   input('please enter your email:')
    return x
 def protrbr(x=0):
    x+=20
@@ -80,25 +80,30 @@ def choice_supressor(x=0):
   x+=charg()
   return x
 esc=0
-while esc==0:
-    total=0
-    print('  welcome to phone shop.')
-    package=int(input ('''  what package would you like to buy?
-    1) McBasic Package
-    2) Average JoePackage  
-    3) Rich Kid ProPackage'''))
-    if package==1:
-       total+=50
-       total+=protchoice()
-       total+=charg()
-       esc=1
-    elif package==2:
-       total+=150
-       total+=choice_supressor()
-       esc=1
-    elif package==3:
-       total+=800
-       total+=dia()
-       total+=choice_supressor()
-       esc=1
-print('your total is $',total)
+try:
+ while esc==0:
+      total=0
+      print('  welcome to phone shop.')
+      package=int(input ('''  what package would you like to buy?
+      1) McBasic Package
+      2) Average JoePackage  
+      3) Rich Kid ProPackage'''))
+      if package==1:
+         total+=50
+         total+=protchoice()
+         total+=charg()
+         esc=1
+      elif package==2:
+         total+=150
+         total+=choice_supressor()
+         esc=1
+      elif package==3:
+         total+=800
+         total+=dia()
+         total+=choice_supressor()
+         esc=1
+ print('your total is $',total)
+except ValueError:
+ print('please enter a number corresponding to one of the options')
+except TypeError:
+  print('please enter a number corresponding to one of the options')
