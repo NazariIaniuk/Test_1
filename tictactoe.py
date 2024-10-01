@@ -118,3 +118,4 @@ for i in range (0,5):
   pC2='o'
  elif ask=='C3':
   pC3='o'
+print('game is over.')
