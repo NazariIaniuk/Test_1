@@ -41,7 +41,7 @@ def charg(x=0):
     x+=100
    return x
 def protchoice(x=0):
- protchoice=int(input('''wich protective case would you like?
+ protchoice=int(input('''which protective case would you like?
    1) None $0
    2) Rubber $20
    3) Crbonfibre $100'''))
