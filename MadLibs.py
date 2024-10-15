@@ -14,7 +14,7 @@ pluralnoun3=input('something useless')
 name5=input('important person')
 year=input('a year')
 print(f'''
- now is your chance to enter this {adj1} contest. Anyone,
+ Now is your chance to enter this {adj1} contest. Anyone,
  and we mean anyone, can enter this {adj2} contest. Just
  follow these {adj3} rules:
  Write down in {number}.words or less why you think that
