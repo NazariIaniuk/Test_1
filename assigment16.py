@@ -1,0 +1,11 @@
+user1=input('name a month')
+user2=input('name anothee month')
+user3=input('name anothee month')
+user=list()
+user.append(user1)
+user.append(user2)
+user.append(user3)
+print(user[0])
+print(user[1])
+print(user[2])
+
