@@ -1,3 +1,5 @@
-list=[4,6,7,8,9]
-total=list[0]+list[1]+list[2]+list[3]+list[4]
+total=0
+list=[4,5,6,7,8]
+for x in range(0,5):
+ total+=list[x]
 print(total)
