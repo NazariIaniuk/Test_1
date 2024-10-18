@@ -1,0 +1,1 @@
+list=['freddie Mercury','Michael Jackson','Christopher Larkin']

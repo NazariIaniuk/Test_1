@@ -1,0 +1,1 @@
+dictionary={'height':'143cm', 'Favorite color':'green','favorite actor':'THE ROCK'}
