@@ -1,4 +1,5 @@
 name=input('what is your name')
-i=int(input('how much times do you want to repeat it'))
-for i in name:
- print(i)
+b=int(input('how much times do you want to repeat it'))
+for x in range(0,b):
+ for i in name:
+  print(i)
