@@ -103,6 +103,7 @@ while True:
    break
  elif menu==2:
    print(''' here are Statistics
-         amount of games played:
-         amount of games won :
-         amount of ''')
+         amount of games played:   
+         amount of games won :  
+         Win rate :                   
+         current winstreak :        ''')
