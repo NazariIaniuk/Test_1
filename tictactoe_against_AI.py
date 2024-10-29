@@ -1,6 +1,7 @@
 import random
 import time
 global gamesplayed
+ask='y'
 gamesplayed=0
 gamen=1
 gameswon=0
@@ -11,7 +12,7 @@ winstreak=0
 winconditionvar=0
 exit=False
 username='a'
-adj=random.choice(['active','angry','unbeatable','super','crazy','critical'])
+adj=random.choice(['Active','Angry','Unbeatable','Super','Crazy','Critical'])
 anme=random.choice(['Zane','Brody','Artemis','Riley','Terry','Bill','Megatron'])
 AIname=(f'{adj}{anme}')
 game=1
@@ -24,35 +25,110 @@ pB3=' '
 pC1=' '
 pC2=' '
 pC3=' '
-def wincheck (x=0):
+def gamedetermine(x=0):
+ global ask
+ ask=input('do you want to play another round?')
+ if ask=='y' or ask=='yes':
+  if gamen/2==gamen//2:
+    run=gameAImove()
+  else:
+    run=gameplayermove()
+def AItilechangerepeat(x=0):
+ time.sleep(1)
+ if winconditionvar==0:
+  ask=random.randint(0,9)
+  global pA1
+  global pA2
+  global pA3
+  global pB1 
+  global pB2
+  global pB3
+  global pC1
+  global pC2
+  global pC3
+  if ask==1 and pA1==' ':
+    pA1='o'
+  elif ask==2 and pA2==' ':
+    pA2='o'
+  elif ask==3 and pA3==' ':
+    pA3='o'
+  elif ask==4 and pB1==' ':
+    pB1='o'
+  elif ask==5 and pB2==' ':
+    pB2='o'
+  elif ask==6 and pB3==' ':
+    pB3='o'
+  elif ask==7 and pC1==' ':
+    pC1='o'
+  elif ask==8 and pC2==' ':
+    pC2='o'
+  elif ask==9 and pC3==' ':
+    pC3='o'
+  else:
+    run=AItilechangerepeat()
+  a=wincondition()
+  return wincondition()
+ else:
+  return 0
+def boardreset(x=0):
+  global pA1
+  global pA2
+  global pA3
+  global pB1
+  global pB2
+  global pB3
+  global pC1
+  global pC2
+  global pC3
+  global gamen
+  gamen+=1
+  pA1=' '
+  pA2=' '
+  pA3=' '
+  pB1=' '
+  pB2=' '
+  pB3=' '
+  pC1=' '
+  pC2=' '
+  pC3=' '
+def wincheck(x=0):
  global winconditionvar
  global gamesAIwon
+ global ask
  global gameswon
  global winstreak
  a=wincondition()
  if winconditionvar==1:
   print('You win')
+  time.sleep(1)
   winstreak+=1
+  print(f'Your winstreak is now {winstreak}')
   gameswon+=1
   winconditionvar=0
+  a=boardreset()
+  ask=input('do you want to play another round?')
  elif winconditionvar==2:
   print(f'{AIname} wins')
   winstreak=0
   gamesAIwon+=1
   winconditionvar=0
+  a=boardreset()
+  ask=input('do you wan tto play another round?')
 def wincondition(x=0):
  global winconditionvar
  if pA1=='x'and pA2=='x'and pA3=='x'or pB1=='x'and pB2=='x'and pB3=='x'or pC1=='x'and pC2=='x'and pC3=='x'or pA1=='x' and pB1=='x' and pC1=='x' or pA2=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB3=='x' and pC3=='x' or pA1=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB2=='x' and pC1=='x':
-  winconditionvar='1'
+  winconditionvar=1
  elif pA1=='o'and pA2=='o'and pA3=='o'or pB1=='o'and pB2=='o'and pB3=='o'or pC1=='o'and pC2=='o'and pC3=='o'or pA1=='o' and pB1=='o' and pC1=='o' or pA2=='o' and pB2=='o' and pC3=='o' or pA3=='o' and pB3=='o' and pC3=='o' or pA1=='o' and pB2=='o' and pC3=='o' or pA3=='o' and pB2=='o' and pC1=='o':
-  winconditionvar='2'
-def boardpprint (x=0):
+  winconditionvar=2
+def boardpprint(x=0):
  print('   1   2   3')
  print ('A|',pA1,'|',pA2,'|',pA3,'|')
  print ('B|',pB1,'|',pB2,'|',pB3,'|')
  print ('C|',pC1,'|',pC2,'|',pC3,'|')
 def tilechange(x=0):
- if winconditionvar==0:
+ if winconditionvar!=0:
+  run=wincheck()
+ else:
   print(f'it is your move {username}!')
   print('this is  how the board looks like')
   a=boardpprint()
@@ -90,10 +166,12 @@ def tilechange(x=0):
     a=tilechange()
   a=wincondition()
   return wincondition()
- else:
-  return 0 
 def AItilechange(x=0):
- if winconditionvar==0:
+ if winconditionvar!=0:
+  run=wincheck
+ else:
+  print(f'{AIname} is thinking')
+  time.sleep(1)
   ask=random.randint(0,9)
   global pA1
   global pA2
@@ -123,20 +201,18 @@ def AItilechange(x=0):
   elif ask==9 and pC3==' ':
     pC3='o'
   else:
-    run=AItilechange()
+    run=AItilechangerepeat()
   a=wincondition()
   return wincondition()
- else:
-  return 0
 def gameplayermove(x=0):
   global winstreak
   global draws
+  global winconditionvar
   global gamesplayed
   gamesplayed+=1
   print(f'this is game number {gamesplayed}')
+  time.sleep(1)
   a=tilechange()
-  if a==0:
-    a=wincheck()
   a=AItilechange()
   a=tilechange()
   a=AItilechange()
@@ -148,49 +224,57 @@ def gameplayermove(x=0):
   print('this is a draw!')
   draws+=1
   winstreak=0
+  winconditionvar=0
+  a=boardreset()
 def gameAImove(x=0):
- global winstreak
- global gamesplayed
- gamesplayed+=1
- print(f'this is game {gamesplayed}, AI moves first this time')
- a=AItilechange()
- a=tilechange()
- a=AItilechange()
- a=tilechange()
- a=AItilechange()
- a=tilechange()
- a=AItilechange()
- a=tilechange()
- a=AItilechange()
- print('this is a draw')
- draws+=1
- winstreak=0
-while True:
- print(f'''                                                   Welcome Challanger
-      this is a game of tic tac toe against the most feared Ai on the planet!, it's name is {AIname} to defeat it use a notation simiiar to chess to describe your moves
+  global winstreak
+  global winconditionvar
+  global gamesplayed
+  global draws
+  gamesplayed+=1
+  print(f'this is game {gamesplayed}, AI moves first this time')
+  time.sleep(1)
+  a=AItilechange()
+  a=tilechange()
+  a=AItilechange()
+  a=tilechange()
+  a=AItilechange()
+  a=tilechange()
+  a=AItilechange()
+  a=tilechange()
+  a=AItilechange()
+  print('this is a draw')
+  draws+=1
+  winstreak=0
+  winconditionvar=0
+  a=boardreset()
+print(f'''                                                   Welcome Challanger
+     this is a game of tic tac toe against the most feared Ai on the planet!, it's name is {AIname} to defeat it use a notation simiiar to chess to describe your moves
             B2 is for the center A1 and C3 are opposite corners, the board will help you not get confused in how this works!''')
- username=input('what is your name challanger?')
- print(f'welcome {username}')
- 
- menu=int(input('''This is the main menu, choose an option by typing a number
+username=input('what is your name challanger?')
+print(f'         welcome {username}!')
+time.sleep(1)
+while True:
+ menu=int(input(''' This is the main menu, choose an option by typing a number
         1 Start game
         2 Score and statistics
         3 exit program'''))
  if menu==3:
    break
  elif menu==2:
-   print(f''' here are Statistics!
-         amount of games played:  {gamesplayed}
-         amount of games won :    {gameswon}
-         amount of games AI won:  {gamesAIwon}
-         amount of draws:         {draws}                  
-         current winstreak :      {winstreak}      
-         AI name :                {AIname}
-         player name:             {username}''')
+  time.sleep(1)
+  print(f'''                    Here are Statistics!
+        ________________________________________
+        | amount of games played:   {gamesplayed}
+        | amount of games won :     {gameswon}
+        | amount of games AI won:   {gamesAIwon}
+        | amount of draws:          {draws}                 
+        | current winstreak :       {winstreak}      
+        | AI name :                 {AIname}
+        | player name:              {username}''')
+  time.sleep(4)
  elif menu==1:
-   while True:
-    if gamen/2!=gamen//2:
-     a=gameplayermove()
+    if gamen/2==gamen//2:
+      run=gameAImove()
     else:
-     a=gameAImove()
-      
+      run=gameplayermove()
