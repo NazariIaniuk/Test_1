@@ -2,13 +2,13 @@ import random
 import time
 global gamesplayed
 gamesplayed=0
+gamen=1
 gameswon=0
 gamesAIwon=0
 draws=0
 global winstreak
 winstreak=0
 winconditionvar=0
-gamen=1
 exit=False
 username='a'
 adj=random.choice(['active','angry','unbeatable','super','crazy','critical'])
@@ -24,6 +24,22 @@ pB3=' '
 pC1=' '
 pC2=' '
 pC3=' '
+def wincheck (x=0):
+ global winconditionvar
+ global gamesAIwon
+ global gameswon
+ global winstreak
+ a=wincondition()
+ if winconditionvar==1:
+  print('You win')
+  winstreak+=1
+  gameswon+=1
+  winconditionvar=0
+ elif winconditionvar==2:
+  print(f'{AIname} wins')
+  winstreak=0
+  gamesAIwon+=1
+  winconditionvar=0
 def wincondition(x=0):
  global winconditionvar
  if pA1=='x'and pA2=='x'and pA3=='x'or pB1=='x'and pB2=='x'and pB3=='x'or pC1=='x'and pC2=='x'and pC3=='x'or pA1=='x' and pB1=='x' and pC1=='x' or pA2=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB3=='x' and pC3=='x' or pA1=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB2=='x' and pC1=='x':
@@ -116,8 +132,11 @@ def gameplayermove(x=0):
   global winstreak
   global draws
   global gamesplayed
-  print(f'this is game number {gamen}')
+  gamesplayed+=1
+  print(f'this is game number {gamesplayed}')
   a=tilechange()
+  if a==0:
+    a=wincheck()
   a=AItilechange()
   a=tilechange()
   a=AItilechange()
@@ -127,13 +146,13 @@ def gameplayermove(x=0):
   a=AItilechange()
   a=tilechange()
   print('this is a draw!')
-  gamesplayed+=1
   draws+=1
   winstreak=0
 def gameAImove(x=0):
  global winstreak
  global gamesplayed
- print(f'this is game {gamen}, AI moves first this time')
+ gamesplayed+=1
+ print(f'this is game {gamesplayed}, AI moves first this time')
  a=AItilechange()
  a=tilechange()
  a=AItilechange()
@@ -144,7 +163,6 @@ def gameAImove(x=0):
  a=tilechange()
  a=AItilechange()
  print('this is a draw')
- gamesplayed+=1
  draws+=1
  winstreak=0
 while True:
@@ -154,7 +172,7 @@ while True:
  username=input('what is your name challanger?')
  print(f'welcome {username}')
  
- menu=int(input('''This is the main menu choose an option by typing a number
+ menu=int(input('''This is the main menu, choose an option by typing a number
         1 Start game
         2 Score and statistics
         3 exit program'''))
