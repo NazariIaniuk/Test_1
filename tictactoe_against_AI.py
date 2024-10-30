@@ -1,13 +1,13 @@
+#imports and starting values for variables
 import random
 import time
-global gamesplayed
 ask='y'
+newround=False
+stopgame=False
 gamesplayed=0
-gamen=1
 gameswon=0
 gamesAIwon=0
 draws=0
-global winstreak
 winstreak=0
 winconditionvar=0
 exit=False
@@ -25,16 +25,9 @@ pB3=' '
 pC1=' '
 pC2=' '
 pC3=' '
-def gamedetermine(x=0):
- global ask
- ask=input('do you want to play another round?')
- if ask=='y' or ask=='yes':
-  if gamen/2==gamen//2:
-    run=gameAImove()
-  else:
-    run=gameplayermove()
+# definintions if one of them seems useless, trust me it isnt
 def AItilechangerepeat(x=0):
- time.sleep(1)
+ time.sleep(0.3)
  if winconditionvar==0:
   ask=random.randint(0,9)
   global pA1
@@ -80,8 +73,6 @@ def boardreset(x=0):
   global pC1
   global pC2
   global pC3
-  global gamen
-  gamen+=1
   pA1=' '
   pA2=' '
   pA3=' '
@@ -95,6 +86,8 @@ def wincheck(x=0):
  global winconditionvar
  global gamesAIwon
  global ask
+ global stopgame
+ global newround
  global gameswon
  global winstreak
  a=wincondition()
@@ -107,18 +100,26 @@ def wincheck(x=0):
   winconditionvar=0
   a=boardreset()
   ask=input('do you want to play another round?')
+  if ask=='y'or ask=='yes':
+    newround=True
+  elif ask=='n'or ask=='no':
+    stopgame=True
  elif winconditionvar==2:
   print(f'{AIname} wins')
   winstreak=0
   gamesAIwon+=1
   winconditionvar=0
   a=boardreset()
-  ask=input('do you wan tto play another round?')
+  ask=input('do you want to play another round?')
+  if ask=='y'or ask=='yes':
+    newround=True
+  elif ask=='n'or ask=='no':
+    stopgame=True
 def wincondition(x=0):
  global winconditionvar
- if pA1=='x'and pA2=='x'and pA3=='x'or pB1=='x'and pB2=='x'and pB3=='x'or pC1=='x'and pC2=='x'and pC3=='x'or pA1=='x' and pB1=='x' and pC1=='x' or pA2=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB3=='x' and pC3=='x' or pA1=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB2=='x' and pC1=='x':
+ if pA1=='x'and pA2=='x'and pA3=='x'or pB1=='x'and pB2=='x'and pB3=='x'or pC1=='x'and pC2=='x'and pC3=='x'or pA1=='x' and pB1=='x' and pC1=='x' or pA2=='x' and pB2=='x' and pC2=='x' or pA3=='x' and pB3=='x' and pC3=='x' or pA1=='x' and pB2=='x' and pC3=='x' or pA3=='x' and pB2=='x' and pC1=='x':
   winconditionvar=1
- elif pA1=='o'and pA2=='o'and pA3=='o'or pB1=='o'and pB2=='o'and pB3=='o'or pC1=='o'and pC2=='o'and pC3=='o'or pA1=='o' and pB1=='o' and pC1=='o' or pA2=='o' and pB2=='o' and pC3=='o' or pA3=='o' and pB3=='o' and pC3=='o' or pA1=='o' and pB2=='o' and pC3=='o' or pA3=='o' and pB2=='o' and pC1=='o':
+ elif pA1=='o'and pA2=='o'and pA3=='o'or pB1=='o'and pB2=='o'and pB3=='o'or pC1=='o'and pC2=='o'and pC3=='o'or pA1=='o' and pB1=='o' and pC1=='o' or pA2=='o' and pB2=='o' and pC2=='o' or pA3=='o' and pB3=='o' and pC3=='o' or pA1=='o' and pB2=='o' and pC3=='o' or pA3=='o' and pB2=='o' and pC1=='o':
   winconditionvar=2
 def boardpprint(x=0):
  print('   1   2   3')
@@ -126,6 +127,10 @@ def boardpprint(x=0):
  print ('B|',pB1,'|',pB2,'|',pB3,'|')
  print ('C|',pC1,'|',pC2,'|',pC3,'|')
 def tilechange(x=0):
+ if stopgame==True:
+  return 3
+ if newround==True:
+  run=gameAImove()
  if winconditionvar!=0:
   run=wincheck()
  else:
@@ -167,8 +172,12 @@ def tilechange(x=0):
   a=wincondition()
   return wincondition()
 def AItilechange(x=0):
+ if stopgame==True:
+  return 3
+ if newround==True:
+  run=gameplayermove()
  if winconditionvar!=0:
-  run=wincheck
+  run=wincheck()
  else:
   print(f'{AIname} is thinking')
   time.sleep(1)
@@ -205,6 +214,8 @@ def AItilechange(x=0):
   a=wincondition()
   return wincondition()
 def gameplayermove(x=0):
+  global newround
+  newround=False
   global winstreak
   global draws
   global winconditionvar
@@ -221,18 +232,25 @@ def gameplayermove(x=0):
   a=tilechange()
   a=AItilechange()
   a=tilechange()
-  print('this is a draw!')
-  draws+=1
-  winstreak=0
-  winconditionvar=0
-  a=boardreset()
+  a=wincondition()
+  a=wincheck()
+  if newround==True:
+   run=gameAImove()
+  if stopgame==False:
+   print('this is a draw!')
+   draws+=1
+   winstreak=0
+   winconditionvar=0
+   a=boardreset()
 def gameAImove(x=0):
+  global newround
+  newround=False
   global winstreak
   global winconditionvar
   global gamesplayed
   global draws
   gamesplayed+=1
-  print(f'this is game {gamesplayed}, AI moves first this time')
+  print(f'this is game {gamesplayed}, AI moves first')
   time.sleep(1)
   a=AItilechange()
   a=tilechange()
@@ -243,11 +261,18 @@ def gameAImove(x=0):
   a=AItilechange()
   a=tilechange()
   a=AItilechange()
-  print('this is a draw')
-  draws+=1
-  winstreak=0
-  winconditionvar=0
-  a=boardreset()
+  run=wincheck()
+  if newround==True:
+    run=gameplayermove()
+  if stopgame==False:
+   print('this is a draw')
+   draws+=1
+   winstreak=0
+   winconditionvar=0
+   a=boardreset()
+  else:
+    return 0
+#single use commands as well as a while loop for the menu
 print(f'''                                                   Welcome Challanger
      this is a game of tic tac toe against the most feared Ai on the planet!, it's name is {AIname} to defeat it use a notation simiiar to chess to describe your moves
             B2 is for the center A1 and C3 are opposite corners, the board will help you not get confused in how this works!''')
@@ -264,7 +289,7 @@ while True:
  elif menu==2:
   time.sleep(1)
   print(f'''                    Here are Statistics!
-        ________________________________________
+        ___________________________________________________
         | amount of games played:   {gamesplayed}
         | amount of games won :     {gameswon}
         | amount of games AI won:   {gamesAIwon}
@@ -274,7 +299,12 @@ while True:
         | player name:              {username}''')
   time.sleep(4)
  elif menu==1:
-    if gamen/2==gamen//2:
-      run=gameAImove()
-    else:
-      run=gameplayermove()
+   stopgame=False
+   newround=False
+   integer=random.randint(1,2)
+   if integer==1:
+    run=gameplayermove()
+   elif integer==2:
+    run=gameAImove()
+# game features: 1 no bugs that can get an advantage to the player, possibity for both the player and AI to move first, comprehensive UI and a display of the board, the game scans the board to see if the AI or the player won the game by checking the values of tiles
+# if you find any bugs that would mean i didn't see them during testing
