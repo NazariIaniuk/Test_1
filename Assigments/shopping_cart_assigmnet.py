@@ -14,6 +14,12 @@ while True:
   print(shopping_cart)
  elif menu==3:
   ask=int(input('what is the index of the item you would like to remove?'))
-  shopping_cart.pop(ask)
+  del shopping_cart[ask]
  elif menu==4:
-  num=int
+  num=int(input('what is the index of the item you want to edit?'))
+  ask=input(f'the item you chose is {shopping_cart[num]} what would you like to change it to? ')
+  shopping_cart[num]=ask
+ elif menu==5:
+  del shopping_cart[0:len(shopping_cart)]
+ elif menu==6:
+  break
