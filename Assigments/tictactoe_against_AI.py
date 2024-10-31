@@ -102,7 +102,7 @@ def wincheck(x=0):
   ask=input('do you want to play another round?')
   if ask=='y'or ask=='yes':
     newround=True
-  elif ask=='n'or ask=='no':
+  elif ask=='n'or ask=='no' or ask=='NO':
     stopgame=True
  elif winconditionvar==2:
   print(f'{AIname} wins')
@@ -113,7 +113,7 @@ def wincheck(x=0):
   ask=input('do you want to play another round?')
   if ask=='y'or ask=='yes':
     newround=True
-  elif ask=='n'or ask=='no':
+  elif ask=='n'or ask=='no' or ask=='NO':
     stopgame=True
 def wincondition(x=0):
  global winconditionvar
