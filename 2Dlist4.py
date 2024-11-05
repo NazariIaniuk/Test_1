@@ -1,7 +1,7 @@
-numlist={0:[2,5,8],
-         1:[3,7,4],
-         2:[1,6,9],
-         3:[4,2,0]}
+numlist=[[2,5,8],
+         [3,7,4],
+         [1,6,9],
+         [4,2,0]]
 row=int(input('value of what row do you want?'))
 print(numlist[row])
 collumn=int(input('which value in that row do you want?'))
