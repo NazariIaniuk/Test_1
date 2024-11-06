@@ -4,6 +4,5 @@ numlist=[[2,5,8],
          [4,2,0]]
 row=int(input('which row would you like displayed?'))
 print(numlist[row])
-append=int(input('enter a new value'))
-numlist[row].append(append)
+numlist[row].append(int(input('enter a new value')))
 print(numlist[row])
