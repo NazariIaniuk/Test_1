@@ -1,6 +1,6 @@
 import statistics
 grades=[]
-minidict=dict()
+dictionary=dict()
 while True:
     try:
             ask1=int(input('how many students are there?'))
@@ -13,8 +13,8 @@ while True:
                  grade=int(input('what is the grade the student got?'))
                  minilist.append(grade/value*100)
                  grades.append(grade/value*100)
-                minidict[name]=minilist
-            print(minidict)
+                dictionary[name]=minilist
+            print(dictionary)
             break
     except ValueError or ZeroDivisionError:
           print('please input a proper number when it is asked to do so.')
@@ -24,6 +24,6 @@ print(f'the mode of class grades,{statistics.mode(grades)}%')
 while True:
  ask=input('would like to check the grade(s) of a specific student?')
  if ask=='y' or ask=='yes':
-  print(minidict[input('whoose grade(s) would you like to see?')])
+  print(dictionary[input('whoose grade(s) would you like to see?')])
  if ask=='n' or ask=='no':
     break
