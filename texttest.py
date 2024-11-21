@@ -3,8 +3,6 @@
 #textfile=open('text.txt', 'r')
 #print(textfile.read())
 
-
-
 #import csv
 #cvsf=open ('csvfile.cvs', 'w')
 #cvsf.write(str(input('user input')))
