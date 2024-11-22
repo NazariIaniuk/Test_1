@@ -1,5 +1,4 @@
 namefile= open('Names.txt', 'r')
 print(namefile.read())
-ask=input('enter one of the names from the list')
-namelist=list(namefile)
+namelist=namefile.read()
 print(namelist)
