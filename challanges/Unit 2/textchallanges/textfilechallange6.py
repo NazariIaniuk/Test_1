@@ -1,6 +1,8 @@
 namefile=open('Names.txt', 'r')
-Namefile2=open('Names2.txt','w')
-print(namefile.read())
-find=input('enter a name  that is in the list ')
-for row in namefile.read():
-    print(row)
+namelist=namefile.read()
+namelist=namelist.split('\n')
+print(namelist)
+namelist.remove(input('enter a name that is on the list'))
+namefile2=open('Names2','w')
+for i in namelist:
+    namefile2.write(i+'\n')

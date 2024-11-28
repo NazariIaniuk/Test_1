@@ -1,0 +1,34 @@
+def enterscore(x=0):
+ ask=input('enter a new score,')
+ if int(ask)<10 and int(ask)>0:
+  ask='00000'+ask
+ if int(ask)<100 and int(ask)>10:
+  ask='0000'+ask
+ if int(ask)<1000 and int(ask)>100:
+  ask='000'+ask
+ if int(ask)<10000 and int(ask)>1000:
+   ask='00'+ask
+ if int(ask)<100000 and int(ask)>10000:
+   ask='0'+ask
+ scorefile=open('scores.txt','a')
+ scorefile.write(ask+'\n')
+def seescores(x=0):
+ global scorelist
+ scorefile=open('scores.txt','r')
+ scorelist=scorefile.read()
+ scorelist=scorelist.split('\n')
+ scorelist.sort(reverse=True)
+ del scorelist[-1]
+ return scorelist[0:4]
+
+while True:
+ menu=int(input('''Choose an option
+                1) Enter score
+                2) see top 5 scores
+                3) exit                 '''))
+ if menu==1:
+  run=enterscore()
+ if menu==2:
+  print(seescores())
+ if menu==3:
+  break
