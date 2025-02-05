@@ -15,7 +15,11 @@ def assetscalc(x=0):
   sortinglist.append(number)
   dictionarylist.append(dictionary)
   ask1=input('add more?')
+ sortinglist.sort()
+ print(sortinglist)
+ print(dictionarylist)
 
+f
 
   
   
@@ -36,4 +40,4 @@ while True:
  accounitngwork=int(input('''which accounting work would you like to do
                           1) get balance sheet info'''))
  if accounitngwork==1:
-  run=balancesheet()
+  run=assetscalc()
